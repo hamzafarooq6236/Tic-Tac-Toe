@@ -1,46 +1,54 @@
 import { useState } from 'react'
 import './App.css'
 import Square from "./square.jsx"
+import Board from "./Board.jsx"
 
 function App() {
   const [XTurn,setXTurn] = useState(true)
-  const [square,setSquare] = useState(Array(9).fill(null));
+  // const [square,setSquare] = useState(Array(9).fill(null));
+  const [History,setHistory] = useState([Array(9).fill(null)]);
+  const [CurrentMove,setCurrentMove] = useState(0);
+  const currentSquares = History[CurrentMove];
 
-  function handleClick(i){
-    if(square[i]){
-      return;
-    }
-    const nextSquare=square.slice();
-    if(XTurn){
-      nextSquare[i]="X";
-    }else{
-      nextSquare[i]="O"
-    }
-    setSquare(nextSquare);
+
+  function handlePlay(currentSquares){
+    const NextHistory = [...History.slice(0,CurrentMove+1),currentSquares];
+    setHistory(NextHistory);
+    setCurrentMove(NextHistory.length-1);
     setXTurn(!XTurn);
   }
 
-  return (
-    <>
-      <div className="board-row">
-        <Square value={square[0]} onSquareClick={() => handleClick(0)}/>
-        <Square value={square[1]} onSquareClick={() => handleClick(1)}/>
-        <Square value={square[2]} onSquareClick={() => handleClick(2)}/>
-      </div>
-      <div className="board-row">
-        <Square value={square[3]} onSquareClick={() => handleClick(3)} />
-        <Square value={square[4]} onSquareClick={() => handleClick(4)} />
-        <Square value={square[5]} onSquareClick={() => handleClick(5)} />
-      </div>
+  function jumpTo(NextMove){
+    setCurrentMove(NextMove);
+    setXTurn(NextMove % 2 ===0);
 
-      <div className="board-row">
-        <Square value={square[6]} onSquareClick={() => handleClick(6)} />
-        <Square value={square[7]} onSquareClick={() => handleClick(7)} />
-        <Square value={square[8]} onSquareClick={() => handleClick(8)} />
+  }
+
+  const moves=History.map((squares,move)=>{
+    let desc;
+    if(move>0){
+      desc = "go to move #" + move;
+    }else{
+      desc = "go to game start";
+    }
+
+    return (
+      <li key={move}>
+        <button onClick={()=> jumpTo(move)}>{desc}</button>
+      </li>
+    );
+  });
+
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board XTurn={XTurn} square={currentSquares} onPlay={handlePlay} />
       </div>
-      
-    </>
-  )
+      <div className="game-info">
+        <ol>{moves}</ol>
+      </div>
+    </div>
+  );
 }
 
 export default App
