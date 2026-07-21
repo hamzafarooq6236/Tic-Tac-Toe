@@ -29,11 +29,11 @@ function App() {
     if(move>0){
       desc = "go to move #" + move;
     }else{
-      desc = "go to game start";
+      desc = "Reset Game";
     }
 
     return (
-      <li key={move}>
+      <li key={move} >
         <button onClick={()=> jumpTo(move)}>{desc}</button>
       </li>
     );
@@ -44,7 +44,7 @@ function App() {
       <div className="game-board">
         <Board XTurn={XTurn} square={currentSquares} onPlay={handlePlay} />
       </div>
-      <div className="game-info">
+      <div className="game-info text-2xl list-inside list-disc">
         <ol>{moves}</ol>
       </div>
     </div>
