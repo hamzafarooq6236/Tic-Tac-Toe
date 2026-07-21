@@ -49,7 +49,7 @@ function App() {
         <Board XTurn={XTurn} square={currentSquares} onPlay={handlePlay} />
       </div>
       <div className="game-info text-2xl list-inside list-disc ">
-        <ol>{moves}</ol>
+        <ol className="[&_li:first-child]: font-bold rounded-md border-3 p-1.5 text-red-500 inline-block mt-1 hover:rounded-md hover:bg-red-500 hover:scale-105 hover:text-black hover:border-red-500">{moves}</ol>
       </div>
     </div>
   );
