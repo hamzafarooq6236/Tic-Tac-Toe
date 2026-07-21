@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+ol li:first-child {
+  @apply rounded-md border-3 p-1.5 text-red-500 inline-block mt-1 hover:rounded-md hover:bg-red-500 hover:scale-105 hover:text-black hover:border-red-500;
+
+  font-weight: bold;
+}
