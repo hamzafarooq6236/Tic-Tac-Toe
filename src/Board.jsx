@@ -13,7 +13,10 @@ export default function Board({ XTurn, square, onPlay }) {
   let status;
   if (winner) {
     status = "Winner: " + winner;
-  } else {
+  }else if(!square.includes(null) && !winner){
+    status = "Winner: Draw";
+  } 
+  else {
     status = "Next Player: " + (XTurn ? "X" : "O");
   }
 

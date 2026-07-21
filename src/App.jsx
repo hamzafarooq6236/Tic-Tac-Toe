@@ -19,8 +19,12 @@ function App() {
   }
 
   function jumpTo(NextMove){
+    
     setCurrentMove(NextMove);
     setXTurn(NextMove % 2 ===0);
+    if(NextMove==0){
+      setHistory([Array(9).fill(null)]);
+    }
 
   }
 
@@ -33,18 +37,18 @@ function App() {
     }
 
     return (
-      <li key={move} >
+      <li key={move} className=''>
         <button onClick={()=> jumpTo(move)}>{desc}</button>
       </li>
     );
   });
 
   return (
-    <div className="game">
-      <div className="game-board">
+    <div className="game grid grid-cols-[2fr_2fr] min-h-screen place-items-center">
+      <div className="game-board justify-self-end">
         <Board XTurn={XTurn} square={currentSquares} onPlay={handlePlay} />
       </div>
-      <div className="game-info text-2xl list-inside list-disc">
+      <div className="game-info text-2xl list-inside list-disc ">
         <ol>{moves}</ol>
       </div>
     </div>
