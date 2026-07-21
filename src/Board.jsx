@@ -77,7 +77,7 @@ export default function Board({ XTurn, square, onPlay }) {
     <>
       <div className="status">{status}</div>
       <div className="flex flex-col gap-px">
-        <div className="board-row">
+        <div className="board-row flex justify-center gap-0.25">
           <Square
             id={0}
             borderFun={BoxColor}
@@ -97,7 +97,7 @@ export default function Board({ XTurn, square, onPlay }) {
             onSquareClick={() => handleClick(2)}
           />
         </div>
-        <div className="board-row">
+        <div className="board-row flex justify-center gap-0.25">
           <Square
             id={3}
             borderFun={BoxColor}
@@ -118,7 +118,7 @@ export default function Board({ XTurn, square, onPlay }) {
           />
         </div>
 
-        <div className="board-row">
+        <div className="board-row flex justify-center gap-0.25">
           <Square
             id={6}
             borderFun={BoxColor}
