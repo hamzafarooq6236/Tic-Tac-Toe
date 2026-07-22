@@ -78,7 +78,7 @@ export default function Board({ XTurn, square, onPlay }) {
 
   return (
     <>
-      <div className="status">{status}</div>
+      <div className="status bg-green-600 h-4 rounded-full text-xs font-medium text-white text-center p-0.5 leading-none m-2 h-auto p-2">{status}</div>
       <div className="flex flex-col gap-px">
         <div className="board-row flex justify-center gap-px">
           <Square
